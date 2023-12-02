@@ -17,5 +17,5 @@ def read_file(file_path)
 end
 
 def extract_double_digit_sum(input_line)
-  (input_line.scan(/\d/).first + input_line.scan(/\d/).last).to_i
+  "#{input_line.scan(/\d/).first}#{input_line.scan(/\d/).last}".to_i
 end
