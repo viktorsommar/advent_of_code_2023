@@ -10,7 +10,7 @@ CONVERTER = {
   nine: 9,
 }
 
-def foobar
+def find_sum_of_digits
   file_path = "day_1/input.txt"
   puts calculate_sum(file_path)
 end
