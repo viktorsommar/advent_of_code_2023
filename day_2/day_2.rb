@@ -14,16 +14,18 @@ def calculate_sum_of_ids(file_path)
   ids = []
 
   input_array.each do |input_line|
-    save_game_id(input_line)
+    ids = save_game_id(input_line, ids)
   end
 
   ids.sum
 end
 
-def save_game_id(input)
+def save_game_id(input, ids)
   if save_game_id?(input)
     ids.push(input.scan(/\d+/).first.to_i)
   end
+
+  ids
 end
 
 def save_game_id?(input)
