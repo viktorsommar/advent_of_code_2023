@@ -1,16 +1,33 @@
+FILE_PATH = "day_2/input.txt"
 MAX_CUBES = {
   red: 12,
   green: 13,
   blue: 14,
 }
 
-def find_sum_of_game_ids
-  file_path = "day_2/input.txt"
-  puts calculate_sum_of_ids(file_path)
+def part_1_solution
+  puts calculate_sum_of_ids
 end
 
-def calculate_sum_of_ids(file_path)
-  input_array = read_file(file_path)
+def part_2_solution
+  puts calculate_sum_of_power
+end
+
+private
+
+def calculate_sum_of_power
+  input_array = read_file
+  power = []
+
+  input_array.each do |input_line|
+    power.push(save_max_number(input_line))
+  end
+
+  power.sum
+end
+
+def calculate_sum_of_ids
+  input_array = read_file
   ids = []
 
   input_array.each do |input_line|
@@ -18,6 +35,16 @@ def calculate_sum_of_ids(file_path)
   end
 
   ids.sum
+end
+
+def save_max_number(input)
+  hash = {}
+  input.scan(/(\d+)\s*(green|blue|red)/).each do |count, color|
+    current_max = hash[color] || 0
+    hash[color] = [current_max, count.to_i].max
+  end
+
+  hash.values.reduce(:*)
 end
 
 def save_game_id(input, ids)
@@ -36,6 +63,6 @@ def save_game_id?(input)
   true
 end
 
-def read_file(file_path)
-  File.read(file_path).split("\n")
+def read_file
+  File.read(FILE_PATH).split("\n")
 end
